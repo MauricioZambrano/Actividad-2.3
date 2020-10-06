@@ -25,7 +25,9 @@ class DoubleLinkedList{
         Registro get(int);
         void addFirst(Registro);
         void addLast(Registro);
+        void sortIP();
         int deleteAll();
+        friend ostream& operator<<(ostream&, DoubleLinkedList);
         
     private:
         Node *head;
@@ -57,6 +59,38 @@ Registro DoubleLinkedList::get(int pos){
     return curr->getData();
 }
 
+//addFirst
+//Complejidad: O(1)
+void DoubleLinkedList::addFirst(Registro data){
+    head = new Node(data, nullptr, head);
+    size++;
+}
+
+void DoubleLinkedList::addLast(Registro data){
+    tail = new Node(data, tail, nullptr);
+    size++;
+}
+
+//Sort by IP
+void DoubleLinkedList::sortIP(){
+    Registro temp;
+    Node *curr = head, *fin = tail;
+    bool interruptor = true;
+
+    for(int pas = 0; pas < size - 1 && interruptor; ++pas){
+        interruptor = false;
+        for(int j = 0; j < size - 1 - pas; ++j){
+            if(vec[j] > vec[j + 1]){
+                temp = vec[j+1];
+                vec[j+1] = vec[j];
+                vec[j] = temp;
+                interruptor = true;
+                
+            }
+        }
+    }
+}
+
 //deleteAll
 //Complejidad: O(n)
 int DoubleLinkedList::deleteAll(){
@@ -71,16 +105,17 @@ int DoubleLinkedList::deleteAll(){
     return sizeAux;
 }
 
-//addFirst
-//Complejidad: O(1)
-void DoubleLinkedList::addFirst(Registro data){
-    head = new Node(data, nullptr, head);
-    size++;
-}
+ostream& operator<<(ostream& os, DoubleLinkedList lista){
+    Node *curr = lista.head;
 
-void DoubleLinkedList::addLast(Registro data){
-    tail = new Node(data, tail, nullptr);
-    size++;
+    while(curr->getNext() != nullptr){
+        os << curr->getData() << endl;
+        curr = curr->getNext();
+    }
+
+    os << curr->getData();
+
+    return os;
 }
 
 #endif
