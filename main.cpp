@@ -7,6 +7,7 @@ using namespace std;
 #include "DoubleLinkedList.h"
 #include "Registro.h"
 
+
 // Cargar los registros de el archivo .txt a un vector de apuntadores de tipo Registro con sus respectivos atributos
 // Complejidad: O(n)
 void cargaRegistros(DoubleLinkedList &lista){
@@ -45,6 +46,23 @@ long ipToLong(string ip){
 	return datoFinal;
 }
 
+void sortBurbuja(DoubleLinkedList &lista){
+    int cont = 0, tam = lista->size();
+    string temp;
+    bool interruptor = true;
+    for (int pas=0; pas<tam-1 && interruptor; ++pas){
+        interruptor = false;
+        for (int j=0; j<tam -1 - pas; ++j){
+            cont++;
+            if(ipToLong(lista->getNext()->getData()->getIP()) < ipToLong(lista->getData()->getIP())){  //Si IP de sig es menor que ip actual swap
+                temp = lista->getNext()->getData()->getIP();        //Poner temp el sig IP
+                lista->getNext()->setIp(lista->getData()->getIP());     //Poner IP de next como actual
+                lista->setIp(temp);     //Poner actual como temp
+                interruptor = true;     //Indicar que si se cambio algo
+            }
+        }
+    }
+}
 
 int main() {
 
