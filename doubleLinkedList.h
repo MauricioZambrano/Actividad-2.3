@@ -11,40 +11,41 @@
  * 10 de octubre del 2020
  */
 
-#include <iostream>
-#include "node.h"
-using namespace std;
+#ifndef DoubleLinkedList_h
+#define DoubleLinkedList_h
 
-template <class T>
-class doubleLinkedList{
-public:
-    void addFirst(T data);
-    void addLast(T data);
-    int deleteAll();
-    
-private:
-    Node<T> *head;
-    Node<T> *tail;
-    int size;
-}
+#include "Node.h"
+#include "Registro.h"
 
-template <class T>
-doubleLinkedList<T>::doubleLinkedList(){
+class DoubleLinkedList{
+    public:
+        DoubleLinkedList();
+        ~DoubleLinkedList();
+        void addFirst(Registro);
+        void addLast(Registro);
+        int deleteAll();
+        
+    private:
+        Node *head;
+        Node *tail;
+        int size;
+};
+
+DoubleLinkedList::DoubleLinkedList(){
     head = nullptr;
     tail = nullptr;
     size = 0;
 }
 
-template <class T>
-doubleLinkedList<T>::~doubleLinkedList(){
+
+DoubleLinkedList::~DoubleLinkedList(){
     deleteAll();
 }
 
 //deleteAll
 //Complejidad: O(n)
-template<class T>
-int doubleLinkedList::deleteAll(){
-    Node<T> *curr = head;
+int DoubleLinkedList::deleteAll(){
+    Node *curr = head;
     while(head != nullptr){
         head = head->getNext(); //Avanzo head una pos
         delete curr; //Libero un nodo
@@ -57,10 +58,9 @@ int doubleLinkedList::deleteAll(){
 
 //addFirst
 //Complejidad: O(1)
-template <class T>
-void doubleLinkedList::addFirst(T data){
+void DoubleLinkedList::addFirst(Registro data){
     //creamos el node
-    Node<T> *aux = new Node<T>(data)
+    Node *aux = new Node(data)
     
     //el next de aux es igual a la dirección de head
     aux->setNext(head);
@@ -75,6 +75,4 @@ void doubleLinkedList::addFirst(T data){
     size++;
 }
 
-
-
-
+#endif
