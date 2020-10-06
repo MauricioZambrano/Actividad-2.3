@@ -22,6 +22,7 @@ private:
     string direccionIP;
     string razon;
 public:
+    Registro();
     Registro(string, int, string, string, string);
     string getIP();
 };

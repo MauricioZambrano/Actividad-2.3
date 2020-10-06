@@ -21,7 +21,7 @@ void cargaRegistros(DoubleLinkedList &lista){
     
     while(archivo >> mes >> dia >> hora >> direccionIP){
         getline(archivo, razon);
-        lista.addLast(new Registro(mes, dia, hora, direccionIP, razon));
+        lista.addLast(Registro(mes, dia, hora, direccionIP, razon));
     }
     
     archivo.close();  

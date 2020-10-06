@@ -21,6 +21,8 @@ class DoubleLinkedList{
     public:
         DoubleLinkedList();
         ~DoubleLinkedList();
+        int getSize();
+        Registro get(int);
         void addFirst(Registro);
         void addLast(Registro);
         int deleteAll();
@@ -42,14 +44,27 @@ DoubleLinkedList::~DoubleLinkedList(){
     deleteAll();
 }
 
+int DoubleLinkedList::getSize(){
+    return size;
+}
+
+Registro DoubleLinkedList::get(int pos){
+    Node *curr = head;
+
+    for(int i = 1; i <= pos; i++)
+        curr = curr->getNext();
+    
+    return curr->getData();
+}
+
 //deleteAll
 //Complejidad: O(n)
 int DoubleLinkedList::deleteAll(){
     Node *curr = head;
     while(head != nullptr){
-        head = head->getNext(); //Avanzo head una pos
-        delete curr; //Libero un nodo
-        curr = head; //Pongo a curr alineado con head
+        head = head->getNext();
+        delete curr;
+        curr = head;
     }
     int sizeAux = size;
     size = 0;
@@ -59,19 +74,12 @@ int DoubleLinkedList::deleteAll(){
 //addFirst
 //Complejidad: O(1)
 void DoubleLinkedList::addFirst(Registro data){
-    //creamos el node
-    Node *aux = new Node(data)
-    
-    //el next de aux es igual a la dirección de head
-    aux->setNext(head);
-    
-    //el prev de aux es igual a la dirección de tail
-    aux->setPrev(tail);
-    
-    //también se puede hacer Node<T> *aux = new Node<T>(data, tail, head);
-    
-    //El nuevo nodo es el head de la lista
-    head = aux;
+    head = new Node(data, nullptr, head);
+    size++;
+}
+
+void DoubleLinkedList::addLast(Registro data){
+    tail = new Node(data, tail, nullptr);
     size++;
 }
 
