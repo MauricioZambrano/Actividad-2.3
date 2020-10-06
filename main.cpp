@@ -46,6 +46,7 @@ long ipToLong(string ip){
 	return datoFinal;
 }
 
+//Sort by IP
 void sortBurbuja(DoubleLinkedList &lista){
     int cont = 0, tam = lista->size();
     string temp;
@@ -63,6 +64,7 @@ void sortBurbuja(DoubleLinkedList &lista){
         }
     }
 }
+
 
 int main() {
 
