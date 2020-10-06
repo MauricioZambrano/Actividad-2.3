@@ -1,3 +1,16 @@
+/*
+ * Programación de estructuras de datos y algoritmos fundamentales
+ * Actividad 2.3 - Actividad Integral estructura de datos lineales
+ * 
+ * Equipo 13
+ * 
+ * Fernando Doddoli Lankenau - A00827038
+ * Mauricio Eugenio Zambrano Díaz - A00827055
+ * Cristóbal Alberto Escamilla Sada - A00827074
+ * 
+ * 10 de octubre del 2020
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,7 +21,7 @@ using namespace std;
 #include "Registro.h"
 
 
-// Cargar los registros de el archivo .txt a un vector de apuntadores de tipo Registro con sus respectivos atributos
+// Carga los registros del archivo .txt a una double linked list almacenando objetos de tipo Registro
 // Complejidad: O(n)
 void cargaRegistros(DoubleLinkedList &lista){
     string mes;

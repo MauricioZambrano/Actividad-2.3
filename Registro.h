@@ -25,6 +25,7 @@ public:
     Registro();
     Registro(string, int, string, string, string);
     long ipToLong();
+    friend ostream& operator<<(ostream&, Registro);
 };
 
 Registro::Registro(string mes, int dia, string hora, string direccionIP, string razon){
@@ -52,6 +53,12 @@ long Registro::ipToLong(){
 	}
 	datoFinal = datoFinal*10000 + dato;
 	return datoFinal;
+}
+
+ostream& operator<<(ostream& os, Registro r){
+    os  << r.mes << ' ' << r.dia << ' ' << r.hora << ' ' << r.direccionIP << r.razon;
+
+    return os;
 }
 
 #endif
