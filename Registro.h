@@ -24,7 +24,7 @@ private:
 public:
     Registro();
     Registro(string, int, string, string, string);
-    string getIP();
+    long ipToLong();
 };
 
 Registro::Registro(string mes, int dia, string hora, string direccionIP, string razon){
@@ -35,8 +35,23 @@ Registro::Registro(string mes, int dia, string hora, string direccionIP, string 
     this->razon = razon;
 }
 
-string Registro::getIP(){
-    return direccionIP;
+// Reescribe la dirección ip (string) a long para facilitar la comparación entre los datos
+// Complejidad: O(n)
+long Registro::ipToLong(){
+	int idx = 0;
+	long datoFinal= 0, dato = 0;
+	while (idx < direccionIP.size()){
+		if (direccionIP[idx]!= '.' && direccionIP[idx]!=':'){
+			dato = dato*10 + direccionIP[idx]-'0';
+		}
+		else{
+			datoFinal = datoFinal*1000 + dato;
+			dato = 0;
+		}
+		idx++;
+	}
+	datoFinal = datoFinal*10000 + dato;
+	return datoFinal;
 }
 
 #endif
