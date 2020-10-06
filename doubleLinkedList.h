@@ -50,7 +50,7 @@ int DoubleLinkedList::getSize(){
 
 Registro DoubleLinkedList::get(int pos){
     Node *curr = head;
-    
+
     for(int i = 1; i <= pos; i++)
         curr = curr->getNext();
     
@@ -62,9 +62,9 @@ Registro DoubleLinkedList::get(int pos){
 int DoubleLinkedList::deleteAll(){
     Node *curr = head;
     while(head != nullptr){
-        head = head->getNext(); //Avanzo head una pos
-        delete curr; //Libero un nodo
-        curr = head; //Pongo a curr alineado con head
+        head = head->getNext();
+        delete curr;
+        curr = head;
     }
     int sizeAux = size;
     size = 0;
