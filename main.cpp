@@ -26,6 +26,25 @@ void cargaRegistros(DoubleLinkedList &lista){
     archivo.close();  
 }
 
+// Reescribe la dirección ip (string) a long para facilitar la comparación entre los datos
+// Complejidad: O(n)
+long ipToLong(string ip){
+	int idx = 0;
+	long datoFinal= 0, dato = 0;
+	while (idx < ip.size()){
+		if (ip[idx]!= '.' && ip[idx]!=':'){
+			dato = dato*10 + ip[idx]-'0';
+		}
+		else{
+			datoFinal = datoFinal*1000 + dato;
+			dato = 0;
+		}
+		idx++;
+	}
+	datoFinal = datoFinal*10000 + dato;
+	return datoFinal;
+}
+
 
 int main() {
 

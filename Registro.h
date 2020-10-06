@@ -23,6 +23,7 @@ private:
     string razon;
 public:
     Registro(string, int, string, string, string);
+    string getIP();
 };
 
 Registro::Registro(string mes, int dia, string hora, string direccionIP, string razon){
@@ -31,6 +32,10 @@ Registro::Registro(string mes, int dia, string hora, string direccionIP, string 
     this->hora = hora;
     this->direccionIP = direccionIP;
     this->razon = razon;
+}
+
+string Registro::getIP(){
+    return direccionIP;
 }
 
 #endif
