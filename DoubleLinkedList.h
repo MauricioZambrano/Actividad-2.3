@@ -27,7 +27,7 @@ class DoubleLinkedList{
         void addLast(Registro);
         void sortIP();
         int deleteAll();
-        friend ostream& operator<<(ostream&, DoubleLinkedList);
+        friend ostream& operator<<(ostream&, Node*);
         
     private:
         Node *head;
@@ -121,17 +121,8 @@ int DoubleLinkedList::deleteAll(){
     return sizeAux;
 }
 
-ostream& operator<<(ostream& os, DoubleLinkedList lista){
-    Node *curr = lista.head;
-
-    while(curr->getNext() != nullptr){
-        os << curr->getData() << endl;
-        curr = curr->getNext();
-    }
-
-    os << curr->getData();
-
-    delete curr;
+ostream& operator<<(ostream& os, Node* nodo){
+    os << nodo->getData() << endl;
 
     return os;
 }
