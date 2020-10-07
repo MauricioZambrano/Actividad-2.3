@@ -62,32 +62,48 @@ Registro DoubleLinkedList::get(int pos){
 //addFirst
 //Complejidad: O(1)
 void DoubleLinkedList::addFirst(Registro data){
+    Node *aux = head;
     head = new Node(data, nullptr, head);
+
+    if(size == 0)
+        tail = head;
+    else
+        aux->setPrev(head);
+
     size++;
 }
 
 void DoubleLinkedList::addLast(Registro data){
-    tail = new Node(data, tail, nullptr);
+    if(size == 0)
+        addFirst(data);
+    else{
+        Node *aux = tail;
+        tail = new Node(data, tail, nullptr);
+        aux->setNext(tail);
+    }
+    
     size++;
 }
 
 //Sort by IP
 void DoubleLinkedList::sortIP(){
     Registro temp;
-    Node *curr = head, *fin = tail;
+    Node *curr = head, *pas = tail;
     bool interruptor = true;
 
-    for(int pas = 0; pas < size - 1 && interruptor; ++pas){
+    while(pas != head && interruptor){
         interruptor = false;
-        for(int j = 0; j < size - 1 - pas; ++j){
-            if(vec[j] > vec[j + 1]){
-                temp = vec[j+1];
-                vec[j+1] = vec[j];
-                vec[j] = temp;
-                interruptor = true;
-                
+        while(curr != pas){
+            if(curr > curr->getNext()){
+                temp = curr->getNext()->getData();
+                curr->getNext()->setData(curr->getData());
+                curr->setData(temp);
+                interruptor = true;  
             }
+
+            curr = curr->getNext();
         }
+        pas = pas->getPrev();
     }
 }
 
@@ -114,6 +130,8 @@ ostream& operator<<(ostream& os, DoubleLinkedList lista){
     }
 
     os << curr->getData();
+
+    delete curr;
 
     return os;
 }
