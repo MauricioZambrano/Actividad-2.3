@@ -22,7 +22,6 @@ class Node{
         Node *prev;
         Node *next;
     public:
-        Node(Registro);
         Node(Registro, Node*, Node*);
         Registro getData();
         Node* getPrev();
@@ -33,42 +32,55 @@ class Node{
         bool operator>(Node);
 };
 
-Node::Node(Registro data){
-    this->data = data;
-    this->prev = nullptr;
-    this->next = nullptr;
-}
-
+// Constructor
 Node::Node(Registro data, Node *prev, Node *next){
     this->data = data;
     this->prev = prev;
     this->next = next;
 }
 
+// Regresa el Registro almacenado en el nodo
+// Complejidad: O(1)
 Registro Node::getData(){
     return data;
 }
 
+// Regresa el apuntador conteniendo la ubicación del nodo anterior en la lista
+// Complejidad: O(1)
 Node* Node::getPrev(){
     return prev;
 }
 
+// Regresa el apuntador conteniendo la ubicación del siguiente en la lista
+// Complejidad: O(1)
 Node* Node::getNext(){
     return next;
 }
 
+// Regresa el registro almacenado en el nodo
+// Complejidad: O(1)
 void Node::setData(Registro data){
     this->data = data;
 }
 
+// Actualiza el valor del apuntador conteniendo la ubicación del nodo anterior en la lista,
+// a una nueva dirección en memoria
+// Complejidad: O(1)
 void Node::setPrev(Node *prev){
     this->prev = prev;
 }
 
+// Actualiza el valor del apuntador conteniendo la ubicación del siguiente nodo en la lista,
+// a una nueva dirección en memoria
+// Complejidad: O(1)
 void Node::setNext(Node *next){
     this->next = next;
 }
 
+// Sobrecarga del operador "mayor que"
+// Utilizado en la función sortIP de DoubleLinkedList
+// para comparar las direcciones IP en los registros almacenados dentro de los nodos
+// Complejidad: O(n)
 bool Node::operator>(Node n){
     return getData().ipToLong() > n.getData().ipToLong();
 }

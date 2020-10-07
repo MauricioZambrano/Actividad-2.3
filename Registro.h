@@ -28,6 +28,7 @@ public:
     friend ostream& operator<<(ostream&, Registro);
 };
 
+// Constructor por default
 Registro::Registro(){
     mes = "";
     dia = 0;
@@ -36,6 +37,7 @@ Registro::Registro(){
     razon = "";
 }
 
+// Constructor con parámetros
 Registro::Registro(string mes, int dia, string hora, string direccionIP, string razon){
     this->mes = mes;
     this->dia = dia;
@@ -63,6 +65,8 @@ long Registro::ipToLong(){
 	return datoFinal;
 }
 
+// Sobrecarga del operador de inserción para desplegar el Registro completo
+// Complejidad: O(1)
 ostream& operator<<(ostream& os, Registro r){
     os  << r.mes << ' ' << r.dia << ' ' << r.hora << ' ' << r.direccionIP << r.razon;
 
