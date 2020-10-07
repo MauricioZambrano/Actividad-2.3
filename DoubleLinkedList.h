@@ -23,7 +23,6 @@ class DoubleLinkedList{
         ~DoubleLinkedList();
         Node* getHead();
         int getSize();
-        Registro get(int);
         void addFirst(Registro);
         void addLast(Registro);
         void sortIP();
@@ -36,38 +35,33 @@ class DoubleLinkedList{
         int size;
 };
 
+// Constructor por default
 DoubleLinkedList::DoubleLinkedList(){
     head = nullptr;
     tail = nullptr;
     size = 0;
 }
 
-
+// Destructor
 DoubleLinkedList::~DoubleLinkedList(){
     deleteAll();
 }
 
 // Función creada para accesar el atributo head
 // Utilizado únicamente en la sobrecarga del operador de inserción
+// Complejidad: O(1)
 Node* DoubleLinkedList::getHead(){
     return head;
 }
 
+// Regresa el número de nodos en la lista doblemente encadenada
+// Complejidad: O(1)
 int DoubleLinkedList::getSize(){
     return size;
 }
 
-Registro DoubleLinkedList::get(int pos){
-    Node *curr = head;
-
-    for(int i = 1; i <= pos; i++)
-        curr = curr->getNext();
-    
-    return curr->getData();
-}
-
-//addFirst
-//Complejidad: O(1)
+// Agrega un nodo al principio de la lista encadenada, conteniendo el Registro data
+// Complejidad: O(1)
 void DoubleLinkedList::addFirst(Registro data){
     Node *aux = head;
     head = new Node(data, nullptr, head);
@@ -80,6 +74,8 @@ void DoubleLinkedList::addFirst(Registro data){
     size++;
 }
 
+// Agrega un nodo al final de la lista encadenada, conteniendo el Registro data
+// Complejidad: O(1)
 void DoubleLinkedList::addLast(Registro data){
     if(size == 0)
         addFirst(data);
@@ -92,7 +88,8 @@ void DoubleLinkedList::addLast(Registro data){
     size++;
 }
 
-//Sort by IP
+// Ordena los nodos en la lista en orden ascendiente de acuerdo a las direcciones IP en sus Registros
+// Complejidad: O(n^3)
 void DoubleLinkedList::sortIP(){
     Registro temp;
     Node *curr, *pas = tail;
@@ -115,8 +112,8 @@ void DoubleLinkedList::sortIP(){
     }
 }
 
-//deleteAll
-//Complejidad: O(n)
+// Borra todos los datos de la lista encadenada
+// Complejidad: O(n)
 int DoubleLinkedList::deleteAll(){
     Node *curr = head;
     while(head != nullptr){
@@ -129,6 +126,8 @@ int DoubleLinkedList::deleteAll(){
     return sizeAux;
 }
 
+// Sobrecarga del operador de inserción, utilizado para desplegar los datos en cada uno de los nodos de la lista
+// Complejidad: O(n)
 ostream& operator<<(ostream& os, DoubleLinkedList& lista){
     Node *curr = lista.getHead();
 
