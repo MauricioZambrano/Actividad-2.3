@@ -40,8 +40,17 @@ void cargaRegistros(DoubleLinkedList &lista){
     archivo.close();  
 }
 
-int main() {
+// Descripción: Función que guarda los registros ordenados en un archivo nuevo
+// Complejidad: O(n)
+void exportarRegistros(DoubleLinkedList& lista, string nombreArchivo){
+    ofstream archivo(nombreArchivo);
+    
+    archivo << lista;
 
+    archivo.close();
+}
+
+int main() {
 
 
     return 0;
