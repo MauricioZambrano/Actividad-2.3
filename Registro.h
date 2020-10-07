@@ -25,8 +25,17 @@ public:
     Registro();
     Registro(string, int, string, string, string);
     long ipToLong();
+    bool operator>(Registro);
     friend ostream& operator<<(ostream&, Registro);
 };
+
+Registro::Registro(){
+    mes = "";
+    dia = 0;
+    hora = "";
+    direccionIP = "";
+    razon = "";
+}
 
 Registro::Registro(string mes, int dia, string hora, string direccionIP, string razon){
     this->mes = mes;
@@ -36,7 +45,7 @@ Registro::Registro(string mes, int dia, string hora, string direccionIP, string 
     this->razon = razon;
 }
 
-// Reescribe la dirección ip (string) a long para facilitar la comparación entre los datos
+// Convierte la dirección ip (string) a long para facilitar la comparación entre los datos
 // Complejidad: O(n)
 long Registro::ipToLong(){
 	int idx = 0;
@@ -53,6 +62,10 @@ long Registro::ipToLong(){
 	}
 	datoFinal = datoFinal*10000 + dato;
 	return datoFinal;
+}
+
+bool Registro::operator>(Registro r){
+    return ipToLong() > r.ipToLong();
 }
 
 ostream& operator<<(ostream& os, Registro r){
