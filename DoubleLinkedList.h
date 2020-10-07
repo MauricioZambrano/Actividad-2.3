@@ -48,7 +48,7 @@ DoubleLinkedList::~DoubleLinkedList(){
 }
 
 // Función creada para accesar el atributo head
-// Utilizado únicamente en la sobrecarga del operador de inserción
+// Utilizada únicamente en la función de sobrecarga del operador de inserción
 // Complejidad: O(1)
 Node* DoubleLinkedList::getHead(){
     return head;
@@ -126,7 +126,7 @@ int DoubleLinkedList::deleteAll(){
     return sizeAux;
 }
 
-// Sobrecarga del operador de inserción, utilizado para desplegar los datos en cada uno de los nodos de la lista
+// Sobrecarga del operador de inserción, utilizado para desplegar los datos almacenados en cada uno de los nodos de la lista
 // Complejidad: O(n)
 ostream& operator<<(ostream& os, DoubleLinkedList& lista){
     Node *curr = lista.getHead();
