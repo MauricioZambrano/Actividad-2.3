@@ -30,6 +30,7 @@ class Node{
         void setData(Registro);
         void setPrev(Node*);
         void setNext(Node*);
+        bool operator>(Node);
 };
 
 Node::Node(Registro data){
@@ -66,6 +67,10 @@ void Node::setPrev(Node *prev){
 
 void Node::setNext(Node *next){
     this->next = next;
+}
+
+bool Node::operator>(Node n){
+    return getData().ipToLong() > n.getData().ipToLong();
 }
 
 #endif

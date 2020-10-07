@@ -21,6 +21,7 @@ class DoubleLinkedList{
     public:
         DoubleLinkedList();
         ~DoubleLinkedList();
+        Node* getHead();
         int getSize();
         Registro get(int);
         void addFirst(Registro);
@@ -44,6 +45,12 @@ DoubleLinkedList::DoubleLinkedList(){
 
 DoubleLinkedList::~DoubleLinkedList(){
     deleteAll();
+}
+
+// Función creada para accesar el atributo head
+// Utilizado únicamente en la sobrecarga del operador de inserción
+Node* DoubleLinkedList::getHead(){
+    return head;
 }
 
 int DoubleLinkedList::getSize(){
@@ -88,13 +95,14 @@ void DoubleLinkedList::addLast(Registro data){
 //Sort by IP
 void DoubleLinkedList::sortIP(){
     Registro temp;
-    Node *curr = head, *pas = tail;
+    Node *curr, *pas = tail;
     bool interruptor = true;
 
     while(pas != head && interruptor){
+        curr = head;
         interruptor = false;
         while(curr != pas){
-            if(curr > curr->getNext()){
+            if(*curr > *curr->getNext()){
                 temp = curr->getNext()->getData();
                 curr->getNext()->setData(curr->getData());
                 curr->setData(temp);
@@ -121,8 +129,15 @@ int DoubleLinkedList::deleteAll(){
     return sizeAux;
 }
 
-ostream& operator<<(ostream& os, Node* nodo){
-    os << nodo->getData() << endl;
+ostream& operator<<(ostream& os, DoubleLinkedList& lista){
+    Node *curr = lista.getHead();
+
+    while(curr != nullptr){
+        os << curr->getData();
+        curr = curr->getNext();
+        if(curr != nullptr)
+            os << endl;
+    }
 
     return os;
 }

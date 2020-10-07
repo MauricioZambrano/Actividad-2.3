@@ -25,7 +25,6 @@ public:
     Registro();
     Registro(string, int, string, string, string);
     long ipToLong();
-    bool operator>(Registro);
     friend ostream& operator<<(ostream&, Registro);
 };
 
@@ -62,10 +61,6 @@ long Registro::ipToLong(){
 	}
 	datoFinal = datoFinal*10000 + dato;
 	return datoFinal;
-}
-
-bool Registro::operator>(Registro r){
-    return ipToLong() > r.ipToLong();
 }
 
 ostream& operator<<(ostream& os, Registro r){
