@@ -33,6 +33,7 @@ class Node{
 };
 
 // Constructor
+// Complejidad: O(1)
 Node::Node(Registro data, Node *prev, Node *next){
     this->data = data;
     this->prev = prev;

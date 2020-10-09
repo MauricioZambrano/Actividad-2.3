@@ -54,6 +54,9 @@ int main() {
     DoubleLinkedList lista;
     cargaRegistros(lista);
     
+
+    cout << "Espere un momento mientras se ordena la bitácora" << endl;
+    cout << "Cargando..." << endl;
     lista.sortIP();
     
     char opcion;
