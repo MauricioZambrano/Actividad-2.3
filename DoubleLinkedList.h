@@ -128,9 +128,6 @@ DoubleLinkedList* DoubleLinkedList::busqueda(string ipInicio, string ipFin){
         lista->addLast(curr->getData());
         indicador = true;
     }
-        
-
-
 
     while(!(curr->getData().getIP() == ipFin && (curr->getNext() == nullptr || curr->getNext()->getData().getIP() != ipFin))){
         curr = curr->getNext();
