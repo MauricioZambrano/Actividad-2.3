@@ -24,6 +24,7 @@ private:
 public:
     Registro();
     Registro(string, int, string, string, string);
+    string getIP();
     long ipToLong();
     friend ostream& operator<<(ostream&, Registro);
 };
@@ -44,6 +45,12 @@ Registro::Registro(string mes, int dia, string hora, string direccionIP, string 
     this->hora = hora;
     this->direccionIP = direccionIP;
     this->razon = razon;
+}
+
+// Regresa el valor de la dirección ip como string
+// Complejidad: O(1)
+string Registro::getIP(){
+    return direccionIP;
 }
 
 // Convierte la dirección ip (string) a long para facilitar la comparación entre los datos
