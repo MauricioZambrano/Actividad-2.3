@@ -50,6 +50,7 @@ DoubleLinkedList::~DoubleLinkedList(){
 
 // Función creada para accesar el atributo head
 // Utilizada únicamente en la función de sobrecarga del operador de inserción
+// debido a que esta función de sobrecarga es de tipo "friend"
 // Complejidad: O(1)
 Node* DoubleLinkedList::getHead(){
     return head;
