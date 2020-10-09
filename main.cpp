@@ -51,7 +51,45 @@ void exportarRegistros(DoubleLinkedList& lista, string nombreArchivo){
 }
 
 int main() {
+    DoubleLinkedList lista;
+    cargaRegistros(lista);
+    
+    lista.sortIP();
+    
+    char opcion;
+    string ipInicio, ipFin, nombreArchivo;
+    
+    do{
+        cout << endl << "Bienvenid@ a la Bitacora de Errores! Seleccione la acción que desea ejectuar:" << endl;
+        cout << "1) Buscar un rango de datos basado en direcciones IP" << endl;
+        cout << "2) Transpasar datos ordenados a nuevo archivo" << endl;
+        cout << "0) Salir" << endl;
+        cin >> opcion;
 
+        switch(opcion){
+            case '1':
+                cout << endl << "Dirección IP inicial (ej. 1.6.378.65:6772): ";
+                cin >> ipInicio;
+
+                cout << "Dirección IP final: ";
+                cin >> ipFin;
+
+                cout << endl << *lista.busqueda(ipInicio, ipFin) << endl << endl;
+                
+                break;
+            
+            case '2':
+                cout << endl << "Tecléa el nombre del archivo en el que deseas almacenar los registros ordenados (Recuerde de agregar el sufijo \'.txt\'): ";
+                cin >> nombreArchivo;
+                exportarRegistros(lista, nombreArchivo);
+                
+                break;
+            
+        }
+
+    } while( opcion != '0');
+
+    cout << endl << "¡Hasta la próxima!" << endl << endl;
 
     return 0;
 }

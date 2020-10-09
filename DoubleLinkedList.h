@@ -26,6 +26,7 @@ class DoubleLinkedList{
         void addFirst(Registro);
         void addLast(Registro);
         void sortIP();
+        DoubleLinkedList* busqueda(string, string);
         int deleteAll();
         friend ostream& operator<<(ostream&, Node*);
         
@@ -112,6 +113,39 @@ void DoubleLinkedList::sortIP(){
     }
 }
 
+// Busca las direcciones IP dentro del rango establecido por el usuario
+// Regresa un apuntador a un objeto de tipo DoubleLinkedList que contiene todos los registros dentro de dicho rango
+// Complejidad: O(n)
+DoubleLinkedList* DoubleLinkedList::busqueda(string ipInicio, string ipFin){
+    DoubleLinkedList *lista = new DoubleLinkedList;
+    Node *curr = head;
+    bool indicador = false;
+
+    if(curr == nullptr)
+        return lista;
+
+    if(curr->getData().getIP() == ipInicio){
+        lista->addLast(curr->getData());
+        indicador = true;
+    }
+        
+
+
+
+    while(!(curr->getData().getIP() == ipFin && (curr->getNext() == nullptr || curr->getNext()->getData().getIP() != ipFin))){
+        curr = curr->getNext();
+
+        if(curr->getData().getIP() == ipInicio)
+            indicador = true;
+
+        if(indicador)
+            lista->addLast(curr->getData());
+    }
+
+
+    return lista;
+}
+
 // Borra todos los datos de la lista encadenada
 // Complejidad: O(n)
 int DoubleLinkedList::deleteAll(){
@@ -121,8 +155,10 @@ int DoubleLinkedList::deleteAll(){
         delete curr;
         curr = head;
     }
+
     int sizeAux = size;
     size = 0;
+    
     return sizeAux;
 }
 
