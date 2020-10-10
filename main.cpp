@@ -20,7 +20,6 @@ using namespace std;
 #include "DoubleLinkedList.h"
 #include "Registro.h"
 
-
 // Carga los registros del archivo .txt a una double linked list almacenando objetos de tipo Registro
 // Complejidad: O(n)
 void cargaRegistros(DoubleLinkedList &lista){
@@ -86,8 +85,7 @@ int main() {
                 cin >> nombreArchivo;
                 exportarRegistros(lista, nombreArchivo);
                 
-                break;
-            
+                break;   
         }
 
     } while( opcion != '0');

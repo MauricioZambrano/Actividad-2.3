@@ -116,7 +116,7 @@ void DoubleLinkedList::sortIP(){
 
 // Busca las direcciones IP dentro del rango establecido por el usuario
 // Regresa un apuntador a un objeto de tipo DoubleLinkedList que contiene todos los registros dentro de dicho rango
-// Complejidad: O(n)
+// Complejidad: O(n^2)
 DoubleLinkedList* DoubleLinkedList::busqueda(string ipInicio, string ipFin){
     DoubleLinkedList *lista = new DoubleLinkedList;
     Node *curr = head;
@@ -134,6 +134,9 @@ DoubleLinkedList* DoubleLinkedList::busqueda(string ipInicio, string ipFin){
             lista->addLast(curr->getData());
         
         curr = curr->getNext();
+
+        if(!(curr->getData() <= ipFin))
+            return lista;
     }
 
     return lista;

@@ -83,7 +83,7 @@ void Node::setNext(Node *next){
 // para comparar las direcciones IP en los registros almacenados dentro de los nodos
 // Complejidad: O(n)
 bool Node::operator>(Node n){
-    return getData().ipToLong() > n.getData().ipToLong();
+    return data.convertIP() > n.data.convertIP();
 }
 
 #endif
