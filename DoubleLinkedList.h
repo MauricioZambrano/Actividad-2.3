@@ -122,24 +122,19 @@ DoubleLinkedList* DoubleLinkedList::busqueda(string ipInicio, string ipFin){
     Node *curr = head;
     bool indicador = false;
 
-    if(curr == nullptr)
-        return lista;
-
-    if(curr->getData().getIP() == ipInicio){
-        lista->addLast(curr->getData());
-        indicador = true;
-    }
-
-    while(!(curr->getData().getIP() == ipFin && (curr->getNext() == nullptr || curr->getNext()->getData().getIP() != ipFin))){
-        curr = curr->getNext();
-
-        if(curr->getData().getIP() == ipInicio)
+    while(!indicador && curr != nullptr){
+        if(curr->getData() >= ipInicio){
             indicador = true;
-
-        if(indicador)
             lista->addLast(curr->getData());
+        }
+        curr = curr->getNext();
     }
-
+    while(indicador && curr != nullptr){
+        if(curr->getData() <= ipFin)
+            lista->addLast(curr->getData());
+        
+        curr = curr->getNext();
+    }
 
     return lista;
 }
@@ -164,6 +159,9 @@ int DoubleLinkedList::deleteAll(){
 // Complejidad: O(n)
 ostream& operator<<(ostream& os, DoubleLinkedList& lista){
     Node *curr = lista.getHead();
+
+    if(curr == nullptr)
+        os << "Lista vacía";
 
     while(curr != nullptr){
         os << curr->getData();

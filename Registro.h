@@ -26,6 +26,9 @@ public:
     Registro(string, int, string, string, string);
     string getIP();
     long ipToLong();
+    bool operator>=(string);
+    bool operator<=(string);
+    bool operator==(string);
     friend ostream& operator<<(ostream&, Registro);
 };
 
@@ -69,8 +72,60 @@ long Registro::ipToLong(){
 		idx++;
 	}
 	datoFinal = datoFinal*10000 + dato;
+    
 	return datoFinal;
 }
+
+// Sobrecarga del operador "mayor que"
+// Utilizado en la función sortIP de DoubleLinkedList para comparar las direcciones
+// IP en los registros
+// Complejidad: O(n)
+bool Registro::operator>=(string ip){
+    int idx = 0;
+	long datoFinal= 0, dato = 0;
+	while (idx < ip.size()){
+		if (ip[idx]!= '.' && ip[idx]!=':'){
+			dato = dato*10 + ip[idx]-'0';
+		}
+		else{
+			datoFinal = datoFinal*1000 + dato;
+			dato = 0;
+		}
+		idx++;
+	}
+	datoFinal = datoFinal*10000 + dato;
+
+    return ipToLong() >= datoFinal;
+}
+
+// Sobrecarga del operador "menor que"
+// Utilizado en la función sortIP de DoubleLinkedList para comparar las direcciones
+// IP en los registros
+// Complejidad: O(n)
+bool Registro::operator<=(string ip){
+    int idx = 0;
+	long datoFinal= 0, dato = 0;
+	while (idx < ip.size()){
+		if (ip[idx]!= '.' && ip[idx]!=':'){
+			dato = dato*10 + ip[idx]-'0';
+		}
+		else{
+			datoFinal = datoFinal*1000 + dato;
+			dato = 0;
+		}
+		idx++;
+	}
+	datoFinal = datoFinal*10000 + dato;
+
+    return ipToLong() <= datoFinal;
+}
+
+// Sobrecarga el operador == para comparar el la direccion IP del registro con otra dirección IP
+// Complejidad: O(1)
+bool Registro::operator==(string ip){
+    return direccionIP == ip;
+}
+
 
 // Sobrecarga del operador de inserción para desplegar el Registro completo
 // Complejidad: O(1)
